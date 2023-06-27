@@ -4,15 +4,21 @@ const { createApp } = Vue;
 const myApp = createApp({
   data() {
     return {
+      lengthEmails: 10,
       emails: [],
     };
   },
+  methods: {
+    getEmails() {
+      for (let i = 0; i < this.lengthEmails; i++) {
+        axios.get('https://flynn.boolean.careers/exercises/api/random/mail').then((res) => {
+          this.emails.push(res.data.response);
+        });
+      }
+    },
+  },
   created() {
-    for (let i = 0; i < 10; i++) {
-      axios.get('https://flynn.boolean.careers/exercises/api/random/mail').then((res) => {
-        this.emails.push(res.data.response);
-      });
-    }
+    this.getEmails();
   },
 });
 

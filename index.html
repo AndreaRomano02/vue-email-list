@@ -24,7 +24,8 @@
 
   <body>
     <div id="root">
-      <div v-for="email in emails">{{email}}</div>
+      <div v-if="emails.length !== lengthEmails" class="fs-1 text-center">Loading...</div>
+      <div v-else v-for="email in emails">{{email}}</div>
     </div>
   </body>
 </html>
